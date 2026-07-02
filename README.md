@@ -1,5 +1,7 @@
 # College Canteen Ordering App
 
+### 🔗 [**Click here for the Live Demo**] (https://college-canteen-app.onrender.com)
+
 A Flask web app with:
 - Separate pages per section: Tiffins, Idlis, Lunch, Snacks, Biryanis, Fast Food
 - Student login using **name + phone number**
