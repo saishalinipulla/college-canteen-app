@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}{{ category_label }}{% endblock %}
+{% block content %}
+<h2 class="section-title mb-4">{{ category_label }}</h2>
+
+{% if not items %}
+  <p class="muted-note">No items available in this section right now.</p>
+{% endif %}
+
+<div class="menu-board">
+  {% for item in items %}
+  <div class="menu-line">
+    <span class="item-name">{{ item.name }}</span>
+    <span class="dots"></span>
+    <span class="item-price">₹{{ '%.2f' % item.price }}</span>
+    <form method="post" action="{{ url_for('add_to_cart', item_id=item.id) }}">
+      <input type="number" name="quantity" value="1" min="1">
+      <button type="submit" class="btn btn-success btn-sm">Add</button>
+    </form>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

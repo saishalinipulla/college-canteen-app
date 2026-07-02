@@ -1,0 +1,242 @@
+/* =========================================================
+   College Canteen — "Order Token" theme
+   Inspired by the numbered token slips handed out at real
+   Indian college canteen counters, and the dotted-leader
+   price lists on canteen notice boards.
+   ========================================================= */
+
+:root {
+  --bg-page:     #221c15;   /* chalkboard charcoal */
+  --bg-panel:    #2b241b;   /* slightly lighter panel */
+  --bg-panel-2:  #332b20;
+  --paper:       #f3ead6;   /* ticket / token paper */
+  --paper-line:  #d8c9a3;
+  --ink:         #2b2318;   /* dark text on paper */
+  --cream:       #f4ecdd;   /* light text on dark bg */
+  --cream-dim:   #cabfa9;
+  --turmeric:    #e3a53f;
+  --turmeric-dk: #b97f22;
+  --chili:       #c1442b;
+  --curry:       #6f8f4e;
+  --steel:       #9aa3a6;
+
+  --font-display: 'Permanent Marker', cursive;
+  --font-heading: 'Kalam', cursive;
+  --font-body:    'Work Sans', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+}
+
+body {
+  background-color: var(--bg-page);
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(227,165,63,0.06), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(111,143,78,0.06), transparent 45%);
+  color: var(--cream);
+  font-family: var(--font-body);
+}
+
+a { color: var(--turmeric); }
+a:hover { color: var(--turmeric-dk); }
+
+h1, h2, h3, .section-title {
+  font-family: var(--font-heading);
+  letter-spacing: 0.3px;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  color: var(--turmeric);
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.35);
+  transform: rotate(-1deg);
+  display: inline-block;
+}
+
+/* ---------- Navbar ---------- */
+.navbar.canteen-nav {
+  background-color: #1a1510 !important;
+  border-bottom: 3px dashed var(--turmeric-dk);
+}
+.canteen-nav .navbar-brand {
+  font-family: var(--font-display);
+  color: var(--turmeric) !important;
+  font-size: 1.4rem;
+}
+.canteen-nav .nav-link {
+  font-family: var(--font-heading);
+  color: var(--cream-dim) !important;
+}
+.canteen-nav .nav-link:hover { color: var(--turmeric) !important; }
+.canteen-nav .navbar-text-user { color: var(--curry) !important; font-family: var(--font-mono); }
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+  background-color: var(--turmeric);
+  border-color: var(--turmeric-dk);
+  color: #1a1510;
+  font-weight: 700;
+}
+.btn-primary:hover { background-color: var(--turmeric-dk); border-color: var(--turmeric-dk); }
+.btn-success { background-color: var(--curry); border-color: #5a7440; }
+.btn-success:hover { background-color: #5a7440; }
+.btn-danger { background-color: var(--chili); border-color: #99341f; }
+.btn-danger:hover { background-color: #99341f; }
+.btn-dark { background-color: #1a1510; border-color: #000; }
+
+/* ---------- Section / category cards on the homepage ---------- */
+.tray-card {
+  background: linear-gradient(160deg, var(--bg-panel), var(--bg-panel-2));
+  border: 1px solid rgba(154,163,166,0.25);
+  border-radius: 10px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.tray-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+  border-color: var(--turmeric);
+}
+.tray-icon { font-size: 2.4rem; display: block; margin-bottom: 0.5rem; }
+.tray-card h5 { font-family: var(--font-heading); color: var(--cream); margin-bottom: 1rem; }
+
+/* ---------- Menu board list (category page) ---------- */
+.menu-board {
+  background: var(--bg-panel);
+  border: 1px solid rgba(154,163,166,0.2);
+  border-radius: 10px;
+  padding: 0.5rem 1.5rem;
+}
+.menu-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px dashed rgba(154,163,166,0.25);
+}
+.menu-line:last-child { border-bottom: none; }
+.menu-line .item-name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--cream);
+  white-space: nowrap;
+}
+.menu-line .dots {
+  flex: 1;
+  border-bottom: 2px dotted var(--steel);
+  height: 0.6em;
+  min-width: 20px;
+}
+.menu-line .item-price {
+  font-family: var(--font-mono);
+  color: var(--turmeric);
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+.menu-line form { display: flex; align-items: center; gap: 0.5rem; margin-left: 0.5rem; }
+.menu-line input[type="number"] {
+  width: 62px;
+  background: var(--bg-page);
+  border: 1px solid var(--steel);
+  color: var(--cream);
+  font-family: var(--font-mono);
+}
+
+/* ---------- Ticket / Token card — the signature element ---------- */
+.ticket {
+  position: relative;
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 6px;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+.ticket::before,
+.ticket::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  background: var(--bg-page);
+  border-radius: 50%;
+}
+.ticket::before { left: -11px; }
+.ticket::after  { right: -11px; }
+
+.ticket-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed var(--paper-line);
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+.ticket-token {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ink);
+}
+.ticket-token small { display: block; font-size: 0.65rem; letter-spacing: 2px; color: #7a6c50; }
+.ticket-meta { font-family: var(--font-mono); font-size: 0.8rem; color: #6b5f47; }
+.ticket-items { font-family: var(--font-mono); font-size: 0.92rem; }
+.ticket-items .line { display: flex; justify-content: space-between; padding: 0.2rem 0; }
+.ticket-total {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  border-top: 2px dashed var(--paper-line);
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Rubber-stamp style status badge */
+.stamp {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  transform: rotate(-4deg);
+  display: inline-block;
+}
+.stamp-pending  { color: var(--chili); }
+.stamp-accepted { color: var(--curry); }
+.stamp-other    { color: var(--steel); }
+
+/* ---------- Cart table ---------- */
+.table { color: var(--cream); }
+.table thead { font-family: var(--font-heading); color: var(--turmeric); }
+.table td, .table th { border-color: rgba(154,163,166,0.2) !important; vertical-align: middle; }
+
+/* ---------- Auth cards ---------- */
+.auth-card {
+  background: var(--bg-panel);
+  border: 1px solid rgba(154,163,166,0.2);
+  border-radius: 10px;
+  padding: 2rem;
+}
+.auth-card label { font-family: var(--font-heading); color: var(--cream-dim); }
+.auth-card .form-control {
+  background: var(--bg-page);
+  border-color: var(--steel);
+  color: var(--cream);
+}
+.auth-card .form-control:focus {
+  background: var(--bg-page);
+  color: var(--cream);
+  border-color: var(--turmeric);
+  box-shadow: 0 0 0 0.2rem rgba(227,165,63,0.25);
+}
+
+/* ---------- Flash alerts ---------- */
+.alert { font-family: var(--font-heading); border-radius: 8px; }
+
+/* ---------- Small helpers ---------- */
+.muted-note { color: var(--cream-dim); font-family: var(--font-body); font-size: 0.9rem; }

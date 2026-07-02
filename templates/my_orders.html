@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}My Orders{% endblock %}
+{% block content %}
+<h2 class="section-title mb-4">My Orders</h2>
+
+{% if not orders %}
+  <p class="muted-note">You haven't placed any orders yet.</p>
+{% endif %}
+
+{% for order in orders %}
+<div class="ticket">
+  <div class="ticket-head">
+    <div class="ticket-token">
+      <small>TOKEN NO.</small>
+      #{{ '%03d' % order.id }}
+    </div>
+    {% if order.status == 'Pending' %}
+      <span class="stamp stamp-pending">Pending</span>
+    {% elif order.status == 'Accepted' %}
+      <span class="stamp stamp-accepted">Accepted</span>
+    {% else %}
+      <span class="stamp stamp-other">{{ order.status }}</span>
+    {% endif %}
+  </div>
+  <div class="ticket-meta mb-2">
+    {{ order.created_at.strftime('%d %b %Y, %I:%M %p') }} &middot;
+    {{ order.student_name }} &middot; {{ order.student_phone }}
+  </div>
+  <div class="ticket-items">
+    {% for line in order.items %}
+    <div class="line">
+      <span>{{ line.item_name }} &times;{{ line.quantity }}</span>
+      <span>₹{{ '%.2f' % (line.price * line.quantity) }}</span>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="ticket-total">
+    <span>TOTAL</span>
+    <span>₹{{ '%.2f' % order.total }}</span>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

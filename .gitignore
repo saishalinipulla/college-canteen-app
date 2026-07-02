@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+instance/
+canteen.db
+.env
+.vscode/
